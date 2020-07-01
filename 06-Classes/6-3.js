@@ -46,12 +46,10 @@ let randomRectangle = (n) => {
 }
 
 let compRectangle = (arr) => {
-    let rectangleA = allRectangle[0];
+    // let rectangleA = allRectangle;
     for (let elt of arr) {
-        rectangleA.collides(elt);
+        arr.collides(elt);
     }
 }
 
-
-
-console.log(randomRectangle(200));
+console.log(randomRectangle(10));
