@@ -2,35 +2,31 @@ const rLine = require('readline-sync');
 const fs = require('fs');
 
 let pizzaList = [];
-pizzaList= fs.readFileSync('pizzaList.txt', {encoding:'utf8', flag:'r'});
 
 let list = () => {
-        console.log("LIST OF PIZZAS : ");
-        console.log(pizzaList);
-        console.log("\n############\n");    
-        home();
-    }
+    console.log("LIST OF PIZZAS : ");
+    console.log(pizzaList);
+    console.log("\n############\n");
+    home();
+}
 
- 
+
 
 
 let add = (pizzaUser) => {
     console.log("Adding the pizza " + pizzaUser + " to the list");
     console.log("\n############\n");
-    arrTemp.push(pizzaUser);
-
+    pizzaList.push(pizzaUser);
     home();
 }
 
 let remove = (pizzaUser) => {
     pizzaUser -= 1;
-    let pizzaToRemove = arrTemp[pizzaUser] ;
+    let pizzaToRemove = pizzaList[pizzaUser];
     console.log("Remove the pizza " + pizzaToRemove + " to the list");
     console.log("\n############\n");
-    let indexToRemove = arrTemp.indexOf(pizzaUser);
-    arrTemp.splice((indexToRemove ), 1);
-    fs.writeFileSync('pizzaList.txt',  arrTemp);
-   
+    let indexToRemove = pizzaList.indexOf(pizzaUser);
+    pizzaList.splice((indexToRemove), 1);
     home();
 }
 
@@ -39,19 +35,18 @@ let exit = () => {
 }
 
 let home = () => {
-    arrTemp = [...pizzaList];
-console.log("Hello! Welcome to the Pizza Flavors Manager.\n"
-+"\nPlease choose your actions: \n"
-+"\n1 - List all the pizza flavors\n"
-+"2 - Add a new pizza flavor \n"
-+ "3 - Remove a pizza flavor \n"
-+ "4 - Exit this program\n");
+    console.log("Hello! Welcome to the Pizza Flavors Manager.\n"
+        + "\nPlease choose your actions: \n"
+        + "\n1 - List all the pizza flavors\n"
+        + "2 - Add a new pizza flavor \n"
+        + "3 - Remove a pizza flavor \n"
+        + "4 - Exit this program\n");
 
-let user = rLine.question("Enter your action's number : ");
-console.log("\n############\n");
+    let user = rLine.question("Enter your action's number : ");
+    console.log("\n############\n");
 
     switch (user) {
-        case "1":   
+        case "1":
             list();
             break
         case "2":
@@ -69,12 +64,3 @@ console.log("\n############\n");
 }
 
 home();
-
-fs.readFile('pizzaList.txt', (err) => {
-    if (err) throw err;
-  });
-
-  fs.writeFile('pizzaList.txt', pizzaList, (err) => { 
-      
-    if (err) throw err; 
-}) 

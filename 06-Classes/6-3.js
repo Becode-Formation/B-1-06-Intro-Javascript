@@ -14,6 +14,7 @@ class Rectangle {
             this.topLeftYPos + this.length > otherRectangle.topLeftYPos) {
             return true;
         } else {
+
             return false;
         }
     }
@@ -37,19 +38,32 @@ let randPosL = () => {
 }
 let allRectangle = [];
 
-let randomRectangle = (n) => {
+let randomRectangle = () => {
 
-    for (i = 0; i < n; i++) {
+    for (i = 0; i < 100; i++) {
         allRectangle[i] = new Rectangle(randPosX(), randPosY(), randPosW(), randPosL());
     }
     compRectangle(allRectangle);
 }
 
+// let compRectangle = (arr) => {
+//     // let rectangleA = allRectangle;
+//     for (let elt of arr) {
+//         arr.collides(elt);
+//     }
+// }
+let rectA;
+let rectB;
+
 let compRectangle = (arr) => {
-    // let rectangleA = allRectangle;
-    for (let elt of arr) {
-        arr.collides(elt);
+
+    for (let i = 0; i < arr.length; i++) {
+        rectA = arr[0];
+        for (let j = i + 1; j < arr.length; j++) {
+            rectB = arr[j];
+            rectA.collides(rectB);
+        }
     }
 }
 
-console.log(randomRectangle(10));
+console.log(randomRectangle());
